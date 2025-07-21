@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Columbus Tech Services | Phone Repair & Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff6b6b;
+            --creative: #9c27b0;
+            --digital: #00bcd4;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #6a5acd);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        nav {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        nav.active {
+            max-height: 500px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        nav ul li {
+            margin: 5px 0;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 4px;
+            display: block;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .menu-toggle i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .cta-button {
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            margin: 5px 0;
+        }
+        
+        .cta-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .creative-button {
+            background-color: var(--creative);
+        }
+
+        .creative-button:hover {
+            background-color: #7b1fa2;
+        }
+
+        .digital-button {
+            background-color: var(--digital);
+        }
+
+        .digital-button:hover {
+            background-color: #00838f;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease;
+            padding: 0 10px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 1.2s ease;
+            padding: 0 15px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            animation: fadeIn 1.4s ease;
+            padding: 0 10px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 15px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title.creative h2::after {
+            background-color: var(--creative);
+        }
+
+        .section-title.digital h2::after {
+            background-color: var(--digital);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 10px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto;
+            max-width: 350px;
+        }
+
+        .service-card.creative {
+            border-top: 4px solid var(--creative);
+        }
+
+        .service-card.digital {
+            border-top: 4px solid var(--digital);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .creative .price {
+            color: var(--creative);
+        }
+
+        .digital .price {
+            color: var(--digital);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 60px 0;
+            background-color: #f5f7ff;
+        }
+        
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            width: 100%;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        .features {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .feature-icon.creative {
+            background-color: var(--creative);
+        }
+
+        .feature-icon.digital {
+            background-color: var(--digital);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 10px;
+        }
+        
+        .testimonial-card {
+            background-color: #f5f7ff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-size: 0.95rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 60px 0;
+            background-color: #f5f7ff;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h3 {
+            margin-bottom: 5px;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .contact-text a, .contact-text p {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .contact-text a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col {
+            margin-bottom: 20px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.85rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 600px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 900px) {
+            .logo {
+                font-size: 28px;
+                margin-bottom: 0;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            nav {
+                width: auto;
+                max-height: none;
+                overflow: visible;
+            }
+            
+            nav ul {
+                flex-direction: row;
+                width: auto;
+            }
+            
+            nav ul li {
+                margin-left: 20px;
+            }
+            
+            .header-container {
+                flex-wrap: nowrap;
+            }
+            
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .services {
+                padding: 80px 0;
+            }
+            
+            .about {
+                padding: 80px 0;
+            }
+            
+            .about-container {
+                flex-direction: row;
+            }
+            
+            .about-img {
+                flex: 1;
+                max-width: none;
+            }
+            
+            .about-content {
+                flex: 1;
+            }
+            
+            .testimonials {
+                padding: 80px 0;
+            }
+            
+            .contact {
+                padding: 80px 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mobile-alt"></i>
+                <span>Columbus Tech Services</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#repairs">Repairs</a></li>
+                    <li><a href="#digital">Digital Services</a></li>
+                    <li><a href="#creative">Creative Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="cta-button">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Comprehensive Tech Solutions</h1>
+            <p>From phone repairs to digital services, we provide complete solutions to meet all your technology needs with a satisfaction guarantee.</p>
+            <div class="hero-buttons">
+                <a href="#repairs" class="cta-button">Repair Services</a>
+                <a href="#digital" class="cta-button digital-button">Digital Services</a>
+                <a href="#creative" class="cta-button creative-button">Creative Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phone Repair Services Section -->
+    <section class="services" id="repairs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Device Repair Services</h2>
+                <p>Fast, reliable repairs with lifetime warranty on parts</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="iPhone Repair">
+                    </div>
+                    <div class="service-content">
+                        <h3>iPhone Screen Repair</h3>
+                        <p>Cracked screen? We replace iPhone screens with high-quality parts and provide a lifetime warranty.</p>
+                        <div class="price">From $79.99</div>
+                        <a href="#contact" class="cta-button">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Android Repair">
+                    </div>
+                    <div class="service-content">
+                        <h3>Android Screen Repair</h3>
+                        <p>We fix all Android devices including Samsung, Google Pixel, LG, and more with OEM-quality parts.</p>
+                        <div class="price">From $69.99</div>
+                        <a href="#contact" class="cta-button">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Battery Replacement">
+                    </div>
+                    <div class="service-content">
+                        <h3>Battery Replacement</h3>
+                        <p>Is your phone dying too quickly? We replace batteries with high-capacity options that last longer.</p>
+                        <div class="price">From $49.99</div>
+                        <a href="#contact" class="cta-button">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Services Section -->
+    <section class="services" id="digital" style="background-color: #f5f7ff;">
+        <div class="container">
+            <div class="section-title digital">
+                <h2>Digital Services</h2>
+                <p>Professional digital solutions for your business</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card digital">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Website Development">
+                    </div>
+                    <div class="service-content digital">
+                        <h3>Website Development</h3>
+                        <p>Custom, responsive websites designed to convert visitors into customers. Mobile-friendly and SEO optimized.</p>
+                        <div class="price">From $999.99</div>
+                        <a href="#contact" class="cta-button digital-button">Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="service-card digital">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="E-Commerce Solutions">
+                    </div>
+                    <div class="service-content digital">
+                        <h3>E-Commerce Solutions</h3>
+                        <p>Complete online store setup with payment processing, inventory management, and marketing tools.</p>
+                        <div class="price">From $1,499.99</div>
+                        <a href="#contact" class="cta-button digital-button">Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="service-card digital">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web Maintenance">
+                    </div>
+                    <div class="service-content digital">
+                        <h3>Web Maintenance</h3>
+                        <p>Ongoing support, updates, and security monitoring to keep your website running smoothly.</p>
+                        <div class="price">From $99.99/month</div>
+                        <a href="#contact" class="cta-button digital-button">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Services Section -->
+    <section class="services" id="creative">
+        <div class="container">
+            <div class="section-title creative">
+                <h2>Creative Services</h2>
+                <p>Professional design solutions to elevate your brand</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card creative">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Logo Design">
+                    </div>
+                    <div class="service-content creative">
+                        <h3>Logo Design</h3>
+                        <p>Custom logo designs that capture your brand identity. Multiple concepts and revisions included.</p>
+                        <div class="price">From $299.99</div>
+                        <a href="#contact" class="cta-button creative-button">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="service-card creative">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1540224485413-5c38ae798ecd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Business Cards">
+                    </div>
+                    <div class="service-content creative">
+                        <h3>Business Cards</h3>
+                        <p>Professional business card design and printing services. Premium paper stocks and finishes available.</p>
+                        <div class="price">From $149.99</div>
+                        <a href="#contact" class="cta-button creative-button">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="service-card creative">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Brand Identity">
+                    </div>
+                    <div class="service-content creative">
+                        <h3>Brand Identity</h3>
+                        <p>Complete brand packages including color palettes, typography, and brand guidelines.</p>
+                        <div class="price">From $599.99</div>
+                        <a href="#contact" class="cta-button creative-button">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Team">
+            </div>
+            <div class="about-content">
+                <h2>About Our Company</h2>
+                <p>Columbus Tech Services is your one-stop solution for all technology needs. What began as a phone repair shop has grown into a full-service technology company offering repairs, digital services, and creative solutions.</p>
+                <p>Our team of certified technicians and creative professionals work together to provide comprehensive solutions for both individuals and businesses.</p>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h4>Certified Professionals</h4>
+                            <p>Our team has years of experience and ongoing training.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon creative">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div>
+                            <h4>Creative Excellence</h4>
+                            <p>Designs that communicate your brand effectively.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon digital">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <h4>Technical Expertise</h4>
+                            <p>Cutting-edge digital solutions for modern businesses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Don't just take our word for it - hear from our satisfied customers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Amazing service! My iPhone screen was cracked and they had it fixed in under an hour. The new screen looks perfect and the price was very reasonable.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Phone Repair Customer</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The website they built for my business has doubled our online inquiries. Professional, responsive, and delivered ahead of schedule!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael T.</h4>
+                            <p>Web Development Client</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Our new logo and business cards perfectly capture our brand identity. The design team was patient and delivered exactly what we envisioned.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica L.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Jessica L.</h4>
+                            <p>Design Client</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch or visit our shop</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Our Location</h3>
+                            <p>123 Main Street, Columbus, OH 43215</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Call Us</h3>
+                            <p><a href="tel:+16145551234">(614) 555-1234</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email Us</h3>
+                            <p><a href="mailto:info@columbustech.com">info@columbustech.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 9am - 7pm</p>
+                            <p>Saturday: 10am - 5pm</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Get a Free Quote</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="(614) 555-1234" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" required>
+                                <option value="">Select a service</option>
+                                <optgroup label="Repair Services">
+                                    <option value="screen-repair">Screen Repair</option>
+                                    <option value="battery-replacement">Battery Replacement</option>
+                                    <option value="water-damage">Water Damage Repair</option>
+                                </optgroup>
+                                <optgroup label="Digital Services">
+                                    <option value="website-dev">Website Development</option>
+                                    <option value="ecommerce">E-Commerce Solution</option>
+                                    <option value="web-maintenance">Web Maintenance</option>
+                                </optgroup>
+                                <optgroup label="Creative Services">
+                                    <option value="logo-design">Logo Design</option>
+                                    <option value="business-cards">Business Cards</option>
+                                    <option value="brand-identity">Brand Identity</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>Columbus Tech Services provides comprehensive technology solutions including device repairs, digital services, and creative design.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#repairs">Repair Services</a></li>
+                        <li><a href="#digital">Digital Services</a></li>
+                        <li><a href="#creative">Creative Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Phone Repairs</a></li>
+                        <li><a href="#">Website Development</a></li>
+                        <li><a href="#">E-Commerce</a></li>
+                        <li><a href="#">Logo Design</a></li>
+                        <li><a href="#">Business Cards</a></li>
+                        <li><a href="#">Brand Identity</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers and tech tips.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Columbus Tech Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

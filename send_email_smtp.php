@@ -18,16 +18,16 @@ $mail = new PHPMailer(true);
 try {
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = 'mail.phonerepairscolumbus.com'; // SiteGround SMTP server
+    $mail->Host       = 'gvam1004.siteground.biz'; // SiteGround SMTP server
     $mail->SMTPAuth   = true;
     $mail->Username   = 'wa@phonerepairscolumbus.com'; // SMTP username
     $mail->Password   = 'getphonerepairs';           // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
-    $mail->Port       = 587;                            // TCP port to connect to
+    $mail->Port       = 465;                            // TCP port to connect to
 
     // Recipients
     $mail->setFrom('wa@phonerepairscolumbus.com', 'Phone Repairs Columbus');
-    $mail->addAddress('getphonerepairs10@gmail.com', 'Phone Repairs Admin');
+    $mail->addAddress('getphonerepairs10@gmail.com', 'Admin');
 
     // Content
     $mail->isHTML(true);

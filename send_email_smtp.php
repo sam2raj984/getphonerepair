@@ -1,27 +1,48 @@
 <?php
-// File: send_email.php
+// File: send_email_smtp.php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// Start session for CSRF token
+session_start();
 
 // Load PHPMailer classes
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// Collect and sanitize form data
-$name = htmlspecialchars($_POST['name']);
-$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-$phone = htmlspecialchars($_POST['phone']);
-$service = htmlspecialchars($_POST['service']);
-$message = htmlspecialchars($_POST['message']);
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Validate inputs
-if (empty($name) || empty($email) || empty($message)) {
-    header('Location: /#contact?status=error');
-    exit;
+// Verify this is a POST request
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    die('Method Not Allowed');
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// Verify CSRF token
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    http_response_code(403);
+    die('Invalid CSRF token');
+}
+
+// Collect and sanitize form data
+$name = htmlspecialchars($_POST['name'] ?? '');
+$email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
+$phone = htmlspecialchars($_POST['phone'] ?? '');
+$service = htmlspecialchars($_POST['service'] ?? '');
+$message = htmlspecialchars($_POST['message'] ?? '');
+
+// Validate inputs
+$errors = [];
+if (empty($name)) $errors[] = 'Name is required';
+if (empty($email)) $errors[] = 'Email is required';
+if (empty($message)) $errors[] = 'Message is required';
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Invalid email format';
+
+if (!empty($errors)) {
+    file_put_contents('mail_errors.log', date('Y-m-d H:i:s') . " - Validation errors: " . implode(', ', $errors) . "\n", FILE_APPEND);
     header('Location: /#contact?status=error');
     exit;
 }
@@ -29,17 +50,20 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $mail = new PHPMailer(true);
 
 try {
-    // Server settings with your specific configuration
+    // Server settings
     $mail->isSMTP();
-    $mail->Host       = 'gvam1004.siteground.biz';  // Your SiteGround outgoing server
+    $mail->Host       = 'gvam1004.siteground.biz';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'wa@phonerepairscolumbus.com'; // Your email username
-    $mail->Password   = 'getphonerepairs';          // Your email password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL encryption
-    $mail->Port       = 465;                        // SMTP port for SSL
+    $mail->Username   = 'wa@phonerepairscolumbus.com';
+    $mail->Password   = 'getphonerepairs';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port       = 465;
     
-    // Enable debugging (0 = off, 1 = client messages, 2 = client and server messages)
-    $mail->SMTPDebug = 0; // Set to 2 for testing, then 0 for production
+    // Enable debugging during testing
+    $mail->SMTPDebug = 2; // Change to 0 in production
+    $mail->Debugoutput = function($str, $level) {
+        file_put_contents('mail_debug.log', date('Y-m-d H:i:s') . " - Level $level: $str\n", FILE_APPEND);
+    };
 
     // Recipients
     $mail->setFrom('wa@phonerepairscolumbus.com', 'Phone Repairs Columbus');
@@ -87,7 +111,8 @@ try {
     header('Location: /#contact?status=success');
 } catch (Exception $e) {
     // Log error to a file for debugging
-    file_put_contents('mail_errors.log', date('Y-m-d H:i:s') . " - Error: " . $mail->ErrorInfo . "\n", FILE_APPEND);
+    $errorMsg = date('Y-m-d H:i:s') . " - Error: " . $e->getMessage() . "\nPHPMailer Error: " . $mail->ErrorInfo . "\n";
+    file_put_contents('mail_errors.log', $errorMsg, FILE_APPEND);
     header('Location: /#contact?status=error');
 }
 exit;
